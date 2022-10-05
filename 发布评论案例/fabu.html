@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style-type: none;
+        }
+
+        textarea {
+            width: 400px;
+            height: 200px;
+            resize: none;
+        }
+
+        .ul li {
+            position: relative;
+            width: 400px;
+            display: flex;
+        }
+
+        .ul div {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
+        /* 默认父亲的高度 */
+
+        .ul div p {
+            text-overflow: ellipsis;
+            word-break: break-word;
+            /* white-space: nowrap; */
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .ul a {
+            position: absolute;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea placeholder="说话快点……" name="" id="" cols="30" rows="10" maxlength="200"></textarea><br>
+    <div><span id="zs">0</span>\<span>200</span><button id="btn">发送</button></div>
+    <div>
+        <ul class="ul">
+            <li>
+                <img src="./img/01.jpg" alt="">
+                <div>
+                    <span>杨浩</span>
+                    <p>
+                        111111111111111111111111111111111111111111111111111111111111
+                    </p>
+                    <em>更多</em>
+
+                </div>
+                <a href="">删除</a>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    let textarea = document.querySelector("textarea")
+    let zs = document.querySelector('#zs')
+    let ul = document.querySelector('ul')
+    let btn = document.querySelector('#btn')
+    let p = document.querySelector('p')
+    let em = document.querySelector('em')
+    textarea.oninput = function name() {
+        zs.innerHTML = this.value.length
+
+    }
+    console.log(textarea.value.length);
+    btn.onclick = function () {
+        if (textarea.value === 0 || textarea.value === null || textarea.value === '') {
+            alert('请输入内容')
+        } else {
+            let li = document.createElement('li')
+            li.innerHTML =
+                `<li>
+                <img src="./img/01.jpg" alt="">
+                <div>
+                    <span>杨浩</span>
+                    <p>${textarea.value}</p>
+                    <em>更多</em>
+                </div>
+            </li>
+            `;
+            ul.insertBefore(li, ul.children[0])
+            textarea.value = ''
+            zs.innerText = textarea.value.length
+        }
+    }
+</script>
+
+</html>
